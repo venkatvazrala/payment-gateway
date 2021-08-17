@@ -489,3 +489,4 @@ java.lang.IllegalArgumentException: Last unit does not have enough valid bits
 2021-08-17 11:22:05,187 INFO c.p.c.PaymentControllerTest [main] No active profile set, falling back to default profiles: default
 2021-08-17 11:22:10,587 INFO c.p.c.PaymentControllerTest [main] Started PaymentControllerTest in 5.684 seconds (JVM running for 7.292)
 2021-08-17 11:22:10,857 INFO c.p.c.PaymentController [http-nio-auto-1-exec-1] inside acceptPayment
+	ConstraintViolationImpl{interpolatedMessage='Name is mandatory', propertyPath=name, rootBeanClass=class com.payment.model.CardHolder, messageTemplate='Name is mandatory'}

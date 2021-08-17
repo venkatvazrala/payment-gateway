@@ -1,7 +1,5 @@
 package com.payment.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.payment.model.Card;
 import com.payment.model.CardHolder;
 import com.payment.model.Invoice;
@@ -11,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -24,6 +23,9 @@ public class PaymentControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @Autowired
+    private PaymentController paymentController;
 
     @Test
     public void whenInvoicedPresent_thenReturn() {
@@ -38,29 +40,7 @@ public class PaymentControllerTest {
 
         // then
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        //assertThat(response.getBody().equals(new SuperHero("Rob", "Mannon", "RobotMan")));
     }
-
-    @Test
-    public void whenInvoicedPresent1_thenReturn() throws JsonProcessingException {
-        // given
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        Invoice invoice = create();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(invoice);
-        HttpEntity<Invoice> requestEntity = new HttpEntity(json, headers);
-
-        System.out.println(json);
-        // when
-        ResponseEntity<Invoice> response = restTemplate.postForEntity("/api/v1/payment/validate",
-                requestEntity, Invoice.class);
-
-        // then
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-        //assertThat(response.getBody().equals(new SuperHero("Rob", "Mannon", "RobotMan")));
-    }
-
     private Invoice create(){
         Card card = new Card();
         card.setCard_id("100");

@@ -1,5 +1,6 @@
 package com.payment.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.payment.audit.Auditable;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
