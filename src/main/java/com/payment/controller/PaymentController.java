@@ -57,7 +57,8 @@ public class PaymentController {
         }
         boolean isCardValid = paymentRequestValidator.validate(newInvoice.getCard().getPan());
         boolean isExpiryValid = paymentRequestValidator.validateExpiry(newInvoice.getCard().getExpiry());
-        if(isExpiryValid && isCardValid) {
+
+        if(!isExpiryValid && isCardValid) {
             Invoice formattedInvoice = paymentRequestValidator.validate(newInvoice);
             invoiceRepository.save(formattedInvoice);
             PaymentResponse paymentResponse = new PaymentResponse();
