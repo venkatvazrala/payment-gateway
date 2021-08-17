@@ -1,8 +1,10 @@
 package com.payment.validator;
 
 import com.payment.model.Invoice;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Component;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -28,14 +30,17 @@ public class PaymentRequestValidator {
     }
 
     public boolean validateExpiry(String expiry) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern ( "MMyy" );
-        YearMonth expiration = YearMonth.parse ( expiry , formatter );
 
-        YearMonth currentYearMonth = YearMonth.now();
-        if(expiration.isBefore(currentYearMonth)){
-            return false;
+        int year = Integer.valueOf("20".concat(expiry.substring(2,4)));
+        int month = Integer.valueOf(expiry.substring(0,2));
+        LocalDate currentDate = LocalDate. now();
+        LocalDate expiryDate = LocalDate.of(year,month,currentDate.getDayOfMonth());
+
+
+        if(expiryDate.isBefore(currentDate)){
+            return true;
         }
-        return true;
+        return false;
 
     }
 
