@@ -31,7 +31,6 @@ public class Card extends Auditable<String> implements Serializable {
     private String expiry;
 
     @Transient
-    @NotBlank(message = "CVV is mandatory")
     private String cvv;
 
 
