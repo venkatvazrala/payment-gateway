@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CardHolderRepository extends CrudRepository<CardHolder,Long> {
-    CardHolder findByName(String name);
 }

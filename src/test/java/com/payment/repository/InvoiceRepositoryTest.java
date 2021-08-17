@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class InvoiceRepositoryTest {
@@ -37,6 +39,8 @@ public class InvoiceRepositoryTest {
 
         invoiceRepository.save(invoice);
 
-        Assert.assertNotNull(invoiceRepository.findById(100L));
+        Iterable<Invoice> findAll = invoiceRepository.findAll();
+        assertThat(findAll).hasSize(1);
+        invoiceRepository.deleteAll();
     }
 }
