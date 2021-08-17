@@ -13,10 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "/api/v1/payment")
@@ -43,10 +44,16 @@ public class PaymentController {
     public ResponseEntity<Invoice> acceptPayment(@Valid @RequestBody Invoice newInvoice, Errors errors) throws Exception {
 
         logger.info("inside acceptPayment");
-      attributeValidator.validate(newInvoice,errors);
+        attributeValidator.validate(newInvoice,errors);
         if (errors.hasErrors()) {
-            System.out.println("Errors "+errors.getAllErrors());
-            return new ResponseEntity(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
+
+                Map<String, String> errorMap = new LinkedHashMap<>();
+                errorMap.put("approve","false");
+                 errors.getAllErrors().forEach( a -> {
+                     errorMap.put(a.getCode().substring(0,a.getCode().indexOf("should")).trim(),a.getCode());
+                 }
+                 );
+            return new ResponseEntity(errorMap, HttpStatus.BAD_REQUEST);
         }
         boolean isCardValid = paymentRequestValidator.validate(newInvoice.getCard().getPan());
         boolean isExpiryValid = paymentRequestValidator.validateExpiry(newInvoice.getCard().getExpiry());
