@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @NoArgsConstructor
@@ -21,17 +22,16 @@ public class Card extends Auditable<String> implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private String card_id;
-    @Max(value = 16)
+
+
+    @NotBlank(message = "PAN is mandatory")
     private String pan;
+
+    @NotBlank(message = "Expiry is mandatory")
     private String expiry;
+
     @Transient
     private String cvv;
 
-    @PrePersist
-    private void validationBeforePersist(){
 
-        log.info("validationBeforePersist called");
-
-
-    }
 }
