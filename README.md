@@ -29,12 +29,21 @@ Sample Json:
 	}
 }
 
-localhost:8080/api/v1/payment/transaction/35678966
+
+Reposne:-
+
+![image](https://user-images.githubusercontent.com/60241157/129901086-ff9a031a-f0ec-4106-89e4-238198a61c68.png)
+
+
 
 
 Get Method
 
 localhost:8080/api/v1/payment/transaction/1
+
+Response
+![image](https://user-images.githubusercontent.com/60241157/129901190-fe732bc5-84ab-4964-8eee-05ae2b052b5c.png)
+
 
 H2 Database
 
