@@ -30,7 +30,7 @@ Sample Json:
 }
 
 
-Reposne:-
+Response:-
 
 ![image](https://user-images.githubusercontent.com/60241157/129901086-ff9a031a-f0ec-4106-89e4-238198a61c68.png)
 
@@ -41,11 +41,11 @@ Get Method
 
 localhost:8080/api/v1/payment/transaction/1
 
-Response
+Response:-
 ![image](https://user-images.githubusercontent.com/60241157/129901190-fe732bc5-84ab-4964-8eee-05ae2b052b5c.png)
 
 
-H2 Database
+H2 Database:-
 
 ![image](https://user-images.githubusercontent.com/60241157/129898945-ade1a8bd-4aee-427e-a028-803039e7d532.png)
 
