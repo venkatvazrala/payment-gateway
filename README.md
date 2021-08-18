@@ -34,4 +34,9 @@ localhost:8080/api/v1/payment/transaction/35678966
 
 Get Method
 
-localhost:8080/api/v1/payment/transaction/35678966
+localhost:8080/api/v1/payment/transaction/1
+
+H2 Database
+
+![image](https://user-images.githubusercontent.com/60241157/129898945-ade1a8bd-4aee-427e-a028-803039e7d532.png)
+
